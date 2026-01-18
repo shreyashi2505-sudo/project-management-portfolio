@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PM Portfolio | Shreyashi</title>
+<link rel="stylesheet" href="stylee.css">
+</head>
+<body>
+<nav class="navbar">
+<h2 class="logo">PM Portfolio</h2>
+<div class="hamburger" onclick="toggleMenu(this)">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<ul>
+<li><a href="#" class="active" onclick="showSection('home',this)">Home</a></li>
+<li><a href="#" onclick="showSection('about',this)">About</a></li>
+<li><a href="#" onclick="showSection('services',this)">Services</a></li>
+<li><a href="#" onclick="showSection('projects',this)">Projects</a></li>
+<li><a href="#" onclick="showSection('contact',this)">Contact</a></li>
+<li><a href="#" onclick="showSection('feedback',this)">Feedback</a></li>
+</ul>
+</nav>
+<!-- HOME -->
+<section id="home" class="page active">
+<div class="hero">
+<h1>Delivering Smart Project Management Solutions</h1>
+<p><strong>Shreyashi</strong><br>Project Management Website Developer</p>
+</div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="page">
+<h1>About</h1>
+<p>This platform focuses on efficient project planning, collaboration, and tracking using modern web practices.</p>
+</section>
+
+
+<!-- SERVICES -->
+<section id="services" class="page">
+<h1>Services</h1>
+<div class="cards">
+<div class="card">Project Planning</div>
+<div class="card">Task Management</div>
+<div class="card">Progress Tracking</div>
+<div class="card">Risk Management</div>
+</div>
+<h2>Select Services</h2>
+
+<label>
+  <input type="checkbox" class="service" value="500"> Project Planning - ₹500
+</label><br>
+
+<label>
+  <input type="checkbox" class="service" value="700"> Task Management - ₹700
+</label><br>
+
+<label>
+  <input type="checkbox" class="service" value="400"> Progress Tracking - ₹400
+</label><br>
+<label>
+  <input type="checkbox" class="service" value="800"> Risk Management- ₹800
+</label><br><br>
+<button class="btn" onclick="calculateCost()">Calculate Cost</button>
+<p>Total Cost: ₹<span id="totalCost">0</span></p>
+<button onclick="toggleSection()">Show / Hide Details</button>
+
+  <div id="details" style="display:none;">
+    <p>Additional service details are shown here.</p>
+  </div>
+</section>
+
+
+
+<!-- PROJECTS -->
+<section id="projects" class="page">
+  <h1>Projects</h1>
+
+  <div class="cards">
+    <div class="card" onclick="openModal('modal1')">
+      <h3>Agile Task Tracker</h3>
+      <p>Scrum-based task management system</p>
+    </div>
+
+    <div class="card" onclick="openModal('modal2')">
+      <h3>Workflow Management System</h3>
+      <p>Automated approval workflows</p>
+    </div>
+
+    <div class="card" onclick="openModal('modal3')">
+      <h3>Project Dashboard</h3>
+      <p>Real-time progress & analytics</p>
+    </div>
+  </div>
+
+</section>
+<!-- CONTACT -->
+<section id="contact" class="page">
+<h1>Contact Me</h1>
+<form class="form" onsubmit="alert('Message sent successfully!'); return false;">
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Message" required></textarea>
+<button class="btn" type="submit">Send Message</button>
+</form>
+</section>
+
+
+<!-- FEEDBACK -->
+<section id="feedback" class="page">
+<h1>Feedback</h1>
+<form class="form" onsubmit="return validateFeedback()">
+
+  <div class="field">
+    <span class="icon">👤</span>
+    <input type="text" id="fname" placeholder="Full Name">
+  </div>
+
+  <div class="field">
+    <span class="icon">📧</span>
+    <input type="email" id="femail" placeholder="Email">
+  </div>
+
+  <div class="field">
+    <span class="icon">⭐</span>
+    <select id="rating">
+      <option value="">Rating</option>
+      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <span class="icon">💬</span>
+    <textarea id="fmsg" placeholder="Your Feedback"></textarea>
+  </div>
+
+  <p id="error" class="error"></p>
+<button type="submit" class="btn">Submit Feedback</button>
+
+</form>
+
+</section>
+<footer>
+<p>© 2025 Project Management Portfolio</p>
+</footer>
+<!-- MODAL 1 -->
+<div class="modal" id="modal1">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal1')">&times;</span>
+
+    <h2>Agile Task Tracker</h2>
+
+    <h4>Problem</h4>
+    <p>
+      Teams struggled to track tasks efficiently during sprints, leading to missed deadlines
+      and unclear responsibilities.
+    </p>
+
+    <h4>Solution</h4>
+    <p>
+      Designed a Scrum-based task tracker with clear task states and sprint visibility.
+    </p>
+
+    <h4>Outcome</h4>
+    <p>
+      Improved task transparency and sprint completion rate by simplifying team coordination.
+    </p>
+
+    <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
+  </div>
+</div>
+
+<!-- MODAL 2 -->
+<div class="modal" id="modal2">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal2')">&times;</span>
+
+    <h2>Workflow Management System</h2>
+
+
+    <h4>Problem</h4>
+    <p>
+      Manual approval workflows caused delays, errors, and lack of accountability.
+    </p>
+
+    <h4>Solution</h4>
+    <p>
+      Built an automated workflow system with role-based approvals and process tracking.
+    </p>
+
+    <h4>Outcome</h4>
+    <p>
+      Reduced approval time and improved operational efficiency.
+    </p>
+
+    <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
+  </div>
+</div>
+
+
+<!-- MODAL 3 -->
+<div class="modal" id="modal3">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal3')">&times;</span>
+
+    <h2>Project Dashboard</h2>
+
+    <h4>Problem</h4>
+    <p>
+      Project stakeholders lacked real-time visibility into progress and risks.
+    </p>
+
+    <h4>Solution</h4>
+    <p>
+      Created a centralized dashboard displaying project status, milestones, and KPIs.
+    </p>
+
+    <h4>Outcome</h4>
+    <p>
+      Enabled faster decision-making and better project control.
+    </p>
+
+    <p><strong>Tech Stack:</strong> HTML, CSS</p>
+  </div>
+</div>
+<script src="scriptt.js"></script>
+</body>
+</html>
+</body>
+</html>

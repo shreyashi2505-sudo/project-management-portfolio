@@ -1,0 +1,296 @@
+
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f8;
+}
+
+.navbar {
+  background: #aa0172;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar a.active {
+  border-bottom: 2px solid #000000;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.hamburger div {
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+
+@media (max-width: 768px) {
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #a5dfdd;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 10px 0;
+  }
+
+  .navbar ul.show {
+    display: flex;
+  }
+
+  .navbar a {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+
+
+.page {
+  display: none;
+  padding: 80px 40px;
+  animation: fadeSlide 0.6s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.hero {
+  height: 80vh;
+  background: linear-gradient(rgba(142, 171, 130, 0.49), rgba(142, 171, 130, 0.49)), url("./images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40px;
+  text-align: center;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: rgb(245, 205, 233) url("./images/card-bg.jpg") no-repeat center / cover;
+  padding: 20px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+
+.form input,
+.form textarea,
+.form select {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.field .icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.field input,
+.field textarea,
+.field select {
+  padding-left: 40px;
+}
+
+.field textarea {
+  resize: none;
+}
+
+.field.error input,
+.field.error textarea,
+.field.error select {
+  border-color: red;
+  animation: shake 0.3s;
+}
+
+.field.success input,
+.field.success textarea,
+.field.success select {
+  border-color: green;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+
+.btn {
+  background: #69215f;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #521333;
+  color: #9b639c;
+}
+
+.btn-outline:hover {
+  background: #1f6feb;
+  color: white;
+}
+
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: hsl(122, 17%, 60%);
+  color: white;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(193, 98, 98, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  animation: fadeSlide 0.4s ease;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content ul {
+  padding-left: 20px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 26px;
+  cursor: pointer;
+  color: #333;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.error {
+  color: red;
+  margin-top: 5px;
+}
