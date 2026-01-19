@@ -108,43 +108,57 @@
 </form>
 </section>
 
-
 <!-- FEEDBACK -->
 <section id="feedback" class="page">
 <h1>Feedback</h1>
-<form class="form" onsubmit="return validateFeedback()">
+<div class="feedback-container">
+  <div class="feedback-form-section">
+    <h2>Submit Your Feedback</h2>
+    <form class="form" onsubmit="return validateFeedback()">
 
-  <div class="field">
-    <span class="icon">👤</span>
-    <input type="text" id="fname" placeholder="Full Name">
+      <div class="field">
+        <span class="icon">👤</span>
+        <input type="text" id="fname" placeholder="Full Name">
+      </div>
+
+      <div class="field">
+        <span class="icon">📧</span>
+        <input type="email" id="femail" placeholder="Email">
+      </div>
+
+      <div class="field">
+        <span class="icon">⭐</span>
+        <select id="rating">
+          <option value="">Rating</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="icon">💬</span>
+        <textarea id="fmsg" placeholder="Your Feedback"></textarea>
+      </div>
+
+      <p id="error" class="error"></p>
+      <button type="submit" class="btn">Submit Feedback</button>
+
+    </form>
   </div>
 
-  <div class="field">
-    <span class="icon">📧</span>
-    <input type="email" id="femail" placeholder="Email">
+  <div class="feedback-list-section">
+    <div class="feedback-list-header">
+      <h2>Previous Feedback</h2>
+      <button class="btn btn-outline" onclick="clearAllFeedbacks()">Clear All</button>
+    </div>
+    <div id="feedbackList" class="feedback-list">
+      <p class="no-feedback">Loading feedback...</p>
+    </div>
   </div>
-
-  <div class="field">
-    <span class="icon">⭐</span>
-    <select id="rating">
-      <option value="">Rating</option>
-      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-    </select>
-  </div>
-
-  <div class="field">
-    <span class="icon">💬</span>
-    <textarea id="fmsg" placeholder="Your Feedback"></textarea>
-  </div>
-
-  <p id="error" class="error"></p>
-<button type="submit" class="btn">Submit Feedback</button>
-
-</form>
+</div>
 
 </section>
 <footer>
-<p>© 2025 Project Management Portfolio</p>
+<p> 2025 Project Management Portfolio</p>
 </footer>
 <!-- MODAL 1 -->
 <div class="modal" id="modal1">
