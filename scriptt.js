@@ -102,28 +102,86 @@ function validateFeedback() {
     error.textContent = "Please fill all fields correctly (min 10 characters)";
     return false;
   }
-fetch("http://127.0.0.1:3000/save-feedback", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
+// Save to local storage
+  const feedbackData = {
     name,
     email,
     rating,
-    message: msg
-  })
-})
-.then(() => {
-  alert("Thank you for your feedback!");
+    message: msg,
+    timestamp: new Date().toISOString()
+  };
+  
+  // Get existing feedback from local storage
+  let feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+  feedbacks.push(feedbackData);
+  
+  // Save updated feedbacks to local storage
+  localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+  
+  alert("Thank you for your feedback! It has been saved locally.");
   document.querySelector("#feedback form").reset();
-})
-.catch(() => {
-  alert("Error saving feedback");
-});
+  document.querySelectorAll(".field").forEach(f => f.classList.remove("success"));
+  
+  // Display the updated feedback list
+  displayFeedbacks();
 
 return false;
 }
+function displayFeedbacks() {
+  const feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+  const feedbackList = document.getElementById('feedbackList');
+  
+  if (feedbacks.length === 0) {
+    feedbackList.innerHTML = '<p class="no-feedback">No feedback submitted yet.</p>';
+    return;
+  }
+  
+  // Sort by timestamp (newest first)
+  feedbacks.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  
+  feedbackList.innerHTML = feedbacks.map((feedback, index) => {
+    const date = new Date(feedback.timestamp);
+    const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+    const stars = '⭐'.repeat(parseInt(feedback.rating));
+    
+    return `
+      <div class="feedback-item">
+        <div class="feedback-header">
+          <strong>${feedback.name}</strong>
+          <span class="feedback-rating">${stars}</span>
+        </div>
+        <div class="feedback-meta">
+          <span class="feedback-email">${feedback.email}</span>
+          <span class="feedback-date">${formattedDate}</span>
+        </div>
+        <div class="feedback-message">${feedback.message}</div>
+        <button class="btn-delete" onclick="deleteFeedback(${index})">Delete</button>
+      </div>
+    `;
+  }).join('');
+}
+
+function deleteFeedback(index) {
+  if (confirm('Are you sure you want to delete this feedback?')) {
+    let feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+    feedbacks.splice(index, 1);
+    localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+    displayFeedbacks();
+  }
+}
+
+function clearAllFeedbacks() {
+  if (confirm('Are you sure you want to delete all feedback?')) {
+    localStorage.removeItem('feedbacks');
+    displayFeedbacks();
+  }
+}
+
+// Display feedbacks when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  displayFeedbacks();
+});
+
 function calculateCost() {
   let total = 0;
 
@@ -143,6 +201,8 @@ function toggleSection() {
   section.style.display =
     section.style.display === "none" ? "block" : "none";
 }
+
+
 
 
 
